@@ -1,16 +1,14 @@
 let bundle = global.__egg_born_mock;
 if (!bundle) {
   global.__egg_born_mock = bundle = require('@zhennann/egg-mock/bootstrap');
-  const eventAppReady = 'eb:event:appReady';
 
-  before(done => {
+  before(async () => {
     // session
     bundle.app.mockSession({});
     // wait app ready
-    bundle.app.on(eventAppReady, () => {
-      bundle.mock.restore();
-      done();
-    });
+    await bundle.app.meta.checkAppReady();
+    // restore
+    bundle.mock.restore();
   });
 }
 
