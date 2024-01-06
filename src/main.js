@@ -1,6 +1,6 @@
 let bundle = global.__egg_born_mock;
 if (!bundle) {
-  global.__egg_born_mock = bundle = require('@zhennann/egg-mock/bootstrap');
+  global.__egg_born_mock = bundle = require('egg-mock/bootstrap');
 
   before(async () => {
     // session
