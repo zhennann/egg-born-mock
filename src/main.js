@@ -1,6 +1,6 @@
 let bundle = global.__egg_born_mock;
 if (!bundle) {
-  global.__egg_born_mock = bundle = require('egg-mock/bootstrap');
+  global.__egg_born_mock = bundle = require("egg-mock/bootstrap");
 
   before(async () => {
     // session
@@ -9,6 +9,10 @@ if (!bundle) {
     await bundle.app.meta.checkAppReady();
     // restore
     bundle.mock.restore();
+  });
+
+  after(async () => {
+    await bundle.app.close();
   });
 }
 
